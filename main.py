@@ -39,7 +39,7 @@ orders_df = pd.merge(orders_df, cust_df, how='inner', on='cust_id')
 
 # create feature for final offer price
 
-orders_df['offer_price'] = orders_df['sale_price'] * (1-discount/100.0) + orders_df['shipped_charges']
+orders_df['offer_price'] = orders_df['sale_price'] * (1-orders_df['discount']/100.0) + orders_df['shipped_charges']
 
 
 # Describe the dataframe and display the top 100 rows of final dataframe
