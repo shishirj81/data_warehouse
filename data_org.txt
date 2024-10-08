@@ -43,7 +43,7 @@ Vendor ID : vend_code (primary key)
 Vendor Name: vend_name
 Vendor Country: vend_country
 Vendor Location: vend_loc
-*Vendor Contact No: vend_contact
+Vendor Contact No: vend_contact
 
 
 6. "customers.json" contains following customer information for the order:-
@@ -52,20 +52,24 @@ Customer ID : cust_id (primary key)
 Customer Name: cust_name
 Customer Country: cust_country
 Customer Location: cust_loc
-*Customer Zipcode: cust_zip
+Customer Zipcode: cust_zip
 
-Note: All * marked fields (are/need to be) numeric fields and rest all fields are string type
+Note: All * marked fields are numeric fields and rest all fields are string type
 
 Data Fields related Info/Issues and ways to fix:-
-1. Date of Order contains null values (as it is critical field remove all such orders)
-2. Order Quantity absent for certain orders (delete such records)
-3. Shipment charges may have null values (impute by 0)
-4. Product pricing details may be missing for certain product codes (impute using category avg)
-5. Customer Zip-Codes may have string or non 6-digit values (set such values to null/unknown)
-6. Vendor Contacts may have string values (set such values to null/unknown)
+1. Order Quantity absent for certain orders (as it is critical field delete such records)
+2. Shipment charges may have null values (impute by 0)
+3. Product pricing details may be missing for certain product codes (impute using category avg)
+4. Customer Zip-Codes may have string or non 6-digit values (set such values to null/unknown)
+5. Vendor Contacts may have string values (set such values to null/unknown)
 
+Creating additional date related features for order and shipment dates
+1. Day of Month (day)
+2. Day of Week
+3. Month
+4. Year
 
 The data will be ingested from all above 6 categories of files into 6 different Dataframes which will then be joined on common keys using orders_map dataset to create a big data warehouse table which contains entire orders detail in a single table
 
-Adding Extra Features after merging all above datasets
+Adding final extra feature after merging all above datasets
 1. tot_sales_amt - prod_price*order_qty*(1-discount/100) + shipped_charges
